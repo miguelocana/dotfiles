@@ -1,0 +1,24 @@
+GHOSTTY SHORTCUTS
+=================
+
+Command Palette
+  ALT+P                 Open command palette
+
+Splits - Create
+  ALT+Enter             Vertical split (side by side)
+  ALT+SHIFT+Enter       Horizontal split (stacked)
+
+Splits - Navigate
+  ALT+H                 Go to left split
+  ALT+J                 Go to down split
+  ALT+K                 Go to up split
+  ALT+L                 Go to right split
+
+Splits - Resize
+  ALT+SHIFT+H           Resize left
+  ALT+SHIFT+J           Resize down
+  ALT+SHIFT+K           Resize up
+  ALT+SHIFT+L           Resize right
+
+Config
+  CTRL+SHIFT+,          Reload config

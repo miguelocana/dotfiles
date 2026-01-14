@@ -1,0 +1,2 @@
+[alias]
+	dog = log --all --decorate --oneline --graph
