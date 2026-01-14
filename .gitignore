@@ -1,3 +1,5 @@
 .claude
 .gitconfig
 fish_variables
+fish/completions/uv.fish
+fish/completions/bun.fish
