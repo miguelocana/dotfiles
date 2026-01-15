@@ -1,4 +1,5 @@
 .claude
 .gitconfig
+fish/config.local.fish
 fish_variables
 fish/completions/*.fish
