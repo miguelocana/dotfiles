@@ -40,11 +40,6 @@ setup_fish() {
         touch "$local_config"
         echo "Fish local config: created"
     fi
-
-    if ! grep -q 'fish_add_path \$HOME/.opencode/bin' "$local_config"; then
-        printf '\n# opencode\nfish_add_path $HOME/.opencode/bin\n' >> "$local_config"
-        echo "Fish local config: added opencode path"
-    fi
 }
 
 setup_ghostty() {
