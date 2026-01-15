@@ -1,0 +1,20 @@
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+  caps
+)
+
+(defvar
+  tap-time 200
+  hold-time 200
+)
+
+(defalias
+  hyp (tap-hold-press $tap-time $hold-time esc (multi lsft lctl lalt lmet))
+)
+
+(deflayer base
+  @hyp
+)

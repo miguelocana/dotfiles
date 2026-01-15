@@ -9,6 +9,9 @@ Personal dotfiles for multiple systems (macOS, Linux distros).
 │   └── aliases     # Git aliases
 ├── fish/           # Fish shell (symlink to ~/.config/fish)
 ├── ghostty/        # Terminal emulator (symlink to ~/.config/ghostty)
+├── kanata/         # Keyboard remapper (symlink to ~/.config/kanata)
+│   ├── kanata.kbd  # Keyboard config
+│   └── kanata.service  # systemd user service
 ├── setup.sh        # Interactive setup script
 └── .gitignore
 ```
@@ -18,7 +21,9 @@ Run `./setup.sh` and select what to configure:
 1. Git - prompts for name/email, includes git/aliases
 2. Fish - symlinks to ~/.config/fish
 3. Ghostty - symlinks to ~/.config/ghostty
-4. All - runs all of the above
+4. Kanata - symlinks config + systemd service to ~/.config/systemd/user/
+5. Completions - generates shell completions
+6. All - runs all of the above
 
 Symlinks warn before replacing existing configs.
 

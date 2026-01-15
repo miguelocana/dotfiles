@@ -12,7 +12,9 @@ Menu options:
 1. **Git** - configures user name/email, includes aliases
 2. **Fish** - symlinks `fish/` to `~/.config/fish`
 3. **Ghostty** - symlinks `ghostty/` to `~/.config/ghostty`
-4. **All** - runs all of the above
+4. **Kanata** - symlinks config + systemd service
+5. **Completions** - generates shell completions (uv, bun)
+6. **All** - runs all of the above
 
 ## Quick Reference
 
@@ -38,6 +40,16 @@ Add aliases to `git/aliases`.
 
 - Config: `ghostty/config`
 - Shortcuts: `ghostty/shortcuts.txt`
+
+### Kanata
+
+```bash
+systemctl --user enable --now kanata  # start and enable
+systemctl --user status kanata        # check status
+systemctl --user restart kanata       # restart after config changes
+```
+
+- Config: `kanata/kanata.kbd` (Caps Lock → tap Esc / hold Hyper)
 
 ### Adding New Configs
 

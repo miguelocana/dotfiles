@@ -44,19 +44,37 @@ setup_completions() {
     command -v bun >/dev/null && bun completions > "$DOTFILES_DIR/fish/completions/bun.fish" && echo "bun: generated!"
 }
 
+setup_kanata() {
+    link_config "$DOTFILES_DIR/kanata" "$HOME/.config/kanata" "Kanata"
+
+    local service_dest="$HOME/.config/systemd/user/kanata.service"
+    mkdir -p "$HOME/.config/systemd/user"
+
+    if [ -L "$service_dest" ] && [ "$(readlink "$service_dest")" = "$DOTFILES_DIR/kanata/kanata.service" ]; then
+        echo "Kanata service: already linked"
+    else
+        ln -sf "$DOTFILES_DIR/kanata/kanata.service" "$service_dest"
+        echo "Kanata service: linked!"
+    fi
+
+    echo "Run 'systemctl --user enable --now kanata' to start"
+}
+
 echo "What to set up?"
 echo "1) Git"
 echo "2) Fish"
 echo "3) Ghostty"
-echo "4) Completions"
-echo "5) All"
-read -p "Choice [1-5]: " choice
+echo "4) Kanata"
+echo "5) Completions"
+echo "6) All"
+read -p "Choice [1-6]: " choice
 
 case $choice in
     1) setup_git ;;
     2) setup_fish ;;
     3) setup_ghostty ;;
-    4) setup_completions ;;
-    5) setup_git; setup_fish; setup_ghostty; setup_completions ;;
+    4) setup_kanata ;;
+    5) setup_completions ;;
+    6) setup_git; setup_fish; setup_ghostty; setup_kanata; setup_completions ;;
     *) echo "Invalid choice" ;;
 esac
