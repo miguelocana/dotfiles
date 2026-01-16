@@ -3,7 +3,12 @@
 )
 
 (defsrc
-  caps
+  esc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet rctl
 )
 
 (defvar
@@ -12,9 +17,37 @@
 )
 
 (defalias
+
+  ;; Navigation mappings
+  ;; Vim-style hjkl arrows
+  ←  left
+  ↓  down
+  ↑  up
+  →  right
+  
+  ;; Space with navigation layer
+  spc (tap-hold-press $tap-time $hold-time spc (layer-while-held navigation))
+
+  ;; Caps Lock as Hyper key
   hyp (tap-hold-press $tap-time $hold-time esc (multi lsft lctl lalt lmet))
+
 )
 
 (deflayer base
-  @hyp
+  esc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @hyp a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           @spc           ralt rmet rctl
+)
+
+
+(deflayer navigation
+  _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    @←   @↓   @↑   @→   _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _              _              _    _    _
 )
