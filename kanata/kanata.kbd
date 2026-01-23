@@ -1,5 +1,6 @@
 (defcfg
   process-unmapped-keys yes
+  chords-v2-min-idle 50
 )
 
 (defsrc
@@ -14,20 +15,84 @@
 (defvar
   tap-time 200
   hold-time 200
+  chord-timeout 50
 )
 
 (defalias
-  ;; Caps Lock as Hyper key
-  hyp (tap-hold-press $tap-time $hold-time esc (multi lsft lctl lalt lmet))
+  ;; Caps Lock as Hyper key (tap=esc, hold=hyper layer)
+  hyp (tap-hold-press $tap-time $hold-time esc (layer-while-held hyper))
 
+  ;; Navigation layer toggle
+  nav (layer-while-held nav)
+)
+
+;; Both shifts = caps lock (using switch instead of chord to avoid shift delay)
+(defalias
+  lscp (switch
+    ((key-history rsft 1)) caps break
+    () lsft break
+  )
+  rscp (switch
+    ((key-history lsft 1)) caps break
+    () rsft break
+  )
+)
+
+;; Left hand combos (d+f, s+f, a+f, w+f, e+f)
+(defchords left-hand $chord-timeout
+  (d f) lctl
+  (s f) lalt
+  (a f) lmet
+  (w f) lsft
+  (e f) @nav
+  (d) d
+  (f) f
+  (s) s
+  (a) a
+  (w) w
+  (e) e
+)
+
+;; Right hand combos (j+k, j+l, j+;, o+j, j+i)
+(defchords right-hand $chord-timeout
+  (j k) rctl
+  (j l) ralt
+  (j ;) rmet
+  (o j) rsft
+  (j i) @nav
+  (j) j
+  (k) k
+  (l) l
+  (;) ;
+  (o) o
+  (i) i
 )
 
 (deflayer base
   esc
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-  @hyp a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  tab  q    (chord left-hand w)  (chord left-hand e)  r    t    y    u    (chord right-hand i)    (chord right-hand o)    p    [    ]    \
+  @hyp (chord left-hand a)  (chord left-hand s)  (chord left-hand d)  (chord left-hand f)  g    h    (chord right-hand j)  (chord right-hand k)  (chord right-hand l)  (chord right-hand ;)  '    ret
+  @lscp z    x    c    v    b    n    m    ,    .    /    @rscp
   lctl lmet lalt           spc            ralt rmet rctl
+)
+
+(deflayer nav
+  _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    home end  _    _    _    _    _
+  _    _    _    _    _    _    left down up   rght _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _              _              _    _    _
+)
+
+;; Hyper layer - most keys send Hyper+key, L switches layout
+(deflayer hyper
+  _
+  S-C-A-M-grv S-C-A-M-1 S-C-A-M-2 S-C-A-M-3 S-C-A-M-4 S-C-A-M-5 S-C-A-M-6 S-C-A-M-7 S-C-A-M-8 S-C-A-M-9 S-C-A-M-0 S-C-A-M-- S-C-A-M-= S-C-A-M-bspc
+  S-C-A-M-tab S-C-A-M-q S-C-A-M-w S-C-A-M-e S-C-A-M-r S-C-A-M-t S-C-A-M-y S-C-A-M-u S-C-A-M-i S-C-A-M-o S-C-A-M-p S-C-A-M-[ S-C-A-M-] S-C-A-M-\
+  _ S-C-A-M-a S-C-A-M-s S-C-A-M-d S-C-A-M-f S-C-A-M-g S-C-A-M-h S-C-A-M-j S-C-A-M-k S-C-A-M-l S-C-A-M-; S-C-A-M-' S-C-A-M-ret
+  S-C-A-M-lsft S-C-A-M-z S-C-A-M-x S-C-A-M-c S-C-A-M-v S-C-A-M-b S-C-A-M-n S-C-A-M-m S-C-A-M-, S-C-A-M-. S-C-A-M-/ S-C-A-M-rsft
+  _ _ _           S-C-A-M-spc            _ _ _
 )
 
