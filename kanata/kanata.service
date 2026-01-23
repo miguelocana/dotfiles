@@ -4,6 +4,7 @@ Documentation=https://github.com/jtroo/kanata
 
 [Service]
 Type=simple
+ExecStartPre=/bin/sh -c 'while [ ! -w /dev/uinput ]; do sleep 0.5; done'
 ExecStart=/usr/bin/kanata -c %h/.config/kanata/kanata.kbd
 Restart=on-failure
 RestartSec=3

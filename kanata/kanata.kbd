@@ -86,13 +86,3 @@
   _    _    _              _              _    _    _
 )
 
-;; Hyper layer - most keys send Hyper+key, L switches layout
-(deflayer hyper
-  _
-  S-C-A-M-grv S-C-A-M-1 S-C-A-M-2 S-C-A-M-3 S-C-A-M-4 S-C-A-M-5 S-C-A-M-6 S-C-A-M-7 S-C-A-M-8 S-C-A-M-9 S-C-A-M-0 S-C-A-M-- S-C-A-M-= S-C-A-M-bspc
-  S-C-A-M-tab S-C-A-M-q S-C-A-M-w S-C-A-M-e S-C-A-M-r S-C-A-M-t S-C-A-M-y S-C-A-M-u S-C-A-M-i S-C-A-M-o S-C-A-M-p S-C-A-M-[ S-C-A-M-] S-C-A-M-\
-  _ S-C-A-M-a S-C-A-M-s S-C-A-M-d S-C-A-M-f S-C-A-M-g S-C-A-M-h S-C-A-M-j S-C-A-M-k S-C-A-M-l S-C-A-M-; S-C-A-M-' S-C-A-M-ret
-  S-C-A-M-lsft S-C-A-M-z S-C-A-M-x S-C-A-M-c S-C-A-M-v S-C-A-M-b S-C-A-M-n S-C-A-M-m S-C-A-M-, S-C-A-M-. S-C-A-M-/ S-C-A-M-rsft
-  _ _ _           S-C-A-M-spc            _ _ _
-)
-
